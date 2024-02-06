@@ -9,5 +9,9 @@
   },
   "devDependencies": {
     "wrangler": "^3.0.0"
+  },
+  "dependencies": {
+    "twilio": "^4.20.1",
+    "xstate": "^5.5.1"
   }
 }

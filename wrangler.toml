@@ -1,4 +1,4 @@
-name = "scale-ivr"
+name = "edge-ivr"
 main = "src/index.js"
 compatibility_date = "2024-01-17"
 
@@ -10,9 +10,10 @@ compatibility_date = "2024-01-17"
 
 # Bind a KV Namespace. Use KV as persistent storage for small key-value pairs.
 # Docs: https://developers.cloudflare.com/workers/runtime-apis/kv
-# [[kv_namespaces]]
-# binding = "MY_KV_NAMESPACE"
-# id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+kv_namespaces = [
+    {binding = "SESSIONS", id="1bb3a9ce112d447b81c44e6193423b55"}
+]
 
 # Bind an R2 Bucket. Use R2 to store arbitrarily large blobs of data, such as files.
 # Docs: https://developers.cloudflare.com/r2/api/workers/workers-api-usage/
@@ -40,12 +41,12 @@ compatibility_date = "2024-01-17"
 # Bind a Durable Object. Durable objects are a scale-to-zero compute primitive based on the actor model.
 # Durable Objects can live for as long as needed. Use these when you need a long-running "server", such as in realtime apps.
 # Docs: https://developers.cloudflare.com/workers/runtime-apis/durable-objects
-# [[durable_objects.bindings]]
-# name = "MY_DURABLE_OBJECT"
-# class_name = "MyDurableObject"
+[[durable_objects.bindings]]
+name = "IVR_STATE"
+class_name = "MyDurableObject"
 
 # Durable Object migrations.
 # Docs: https://developers.cloudflare.com/workers/learning/using-durable-objects#configure-durable-object-classes-with-migrations
-# [[migrations]]
-# tag = "v1"
-# new_classes = ["MyDurableObject"]
+[[migrations]]
+tag = "v1"
+new_classes = ["MyDurableObject"]
